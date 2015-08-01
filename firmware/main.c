@@ -7,14 +7,19 @@
 
 int main(void)
 {
-	DDRB = 0b00100000; //0x20 hex;
+	DDRB = 0b00100000; //Salida DDRB5
+	DDRC = 0b00000000; //ENTRADA DDRC
+
 	PORTB = 0;
 
    while(1) {
-   	PORTB = 0x20;
-   	_delay_ms(1000);
-   	PORTB = 0;
-   	_delay_ms(1000);
+
+   	if(!(PINC & 0x20)) {
+   		PORTB = 0x20;
+   	}
+   	else {
+   		PORTB = 0;	
+   	}
    }
 
 }
