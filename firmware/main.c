@@ -15,11 +15,16 @@ int main(void)
 
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
 	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); 
-
+	
   while(1)
   {
-  	UDR0 = 'H';
-  	_delay_ms(1000);
 
+		DDRB = 0x00;
+		PORTB = 0x10;
+
+		if(!(PINB & 0x10)) {
+			_delay_ms(500);
+  		UDR0 = 'o';
+		}
   }
 }
