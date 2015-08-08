@@ -10,6 +10,4 @@ The examples were developed in MacOS with the [CrossPack for AVR® Development](
 ##LedMatrix
 
 ###Materials
- - Resistors (8) **220Ω**
- - AVR Microcontroler ATMEGA 48
- - Led Matrix 8x8
+ - AVR Microcontroler ATMEGA 48p
