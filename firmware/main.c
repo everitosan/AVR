@@ -5,16 +5,26 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+
+#define MYUBRR 6
+
 int main(void)
 {
-	DDRB = 0b00100000; //0x20 hex;
-	PORTB = 0;
+	UBRR0H = (unsigned char) (MYUBRR >> 8);
+	UBRR0L = (unsigned char) (MYUBRR);
 
-   while(1) {
-   	PORTB = 0x20;
-   	_delay_ms(1000);
-   	PORTB = 0;
-   	_delay_ms(1000);
-   }
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+	UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); 
+	
+  while(1)
+  {
 
+		DDRB = 0x00;
+		PORTB = 0x10;
+
+		if(!(PINB & 0x10)) {
+			_delay_ms(500);
+  		UDR0 = 'o';
+		}
+  }
 }
